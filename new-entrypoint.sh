@@ -4,7 +4,7 @@
 # Fargate 1.4 properly supports STOPSIGNAL directives
 
 echo "Starting New Entrypoint"
-ps -aux
+
 sigterm_handler() {
   echo "Singal trapped"
   if [ $pid -ne 0 ]; then
@@ -31,7 +31,7 @@ trap 'sigterm_handler' TERM
 # 5. Run it in the background
 echo "Setting STDOUT/STDERR and starting docker-entrypoint.sh"
 1>/proc/$$/fd/1 2>/proc/$$/fd/2 /docker-entrypoint.sh "$@" &
-ps -aux
+
 # Now the command is running in the background we can capture the Process ID (PID)
 
 pid="$!"
